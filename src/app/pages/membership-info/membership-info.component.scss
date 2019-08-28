@@ -1,0 +1,76 @@
+nav {
+    a {
+        position: relative;
+        display: block;
+    }
+
+    svg {
+        fill: #816363;
+        width: 1.5em;
+    }
+
+    .text {
+        position: absolute;
+        top: 3px;
+        text-decoration: none;
+        color: #816363;
+    }
+}
+
+hr {
+    margin-bottom: 1.5em;
+}
+
+h5 {
+    margin: 0.5em 0 1em;
+    font-size: 1em;
+}
+
+input {
+    border: none;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-content: baseline;
+    grid-column-gap: 1em;
+    grid-row-gap: 1em;
+    align-items: baseline;
+}
+
+.component {
+    padding: 2em;
+
+    p,
+    a,
+    label {
+        line-height: 1.5;
+        margin: 3px 0;
+        font-size: .9em;
+    }
+
+    .item {
+        margin-bottom: 1em;
+    }
+}
+
+.form {
+    border: 1px solid #ddd;
+    margin-bottom: 2em;
+    border-radius: .3em;
+    padding: .3em;
+
+    fieldset {}
+
+    label {
+        min-width: 100px;
+        text-transform: capitalize;
+        display: inline-block;
+    }
+
+    input {
+        padding: .3em;
+        text-indent: 5px;
+    }
+}

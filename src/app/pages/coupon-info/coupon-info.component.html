@@ -1,0 +1,80 @@
+<!--
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-08-19 12:09:17
+ * @LastEditTime: 2019-08-19 15:23:14
+ * @LastEditors: Please set LastEditors
+ -->
+<section class="content">
+    <nav>
+        <a [routerLink]="[ '../' ]">
+            <span>
+                <svg viewBox="0 0 20 20" focusable="false" aria-hidden="true">
+                    <path
+                        d="M12 16a.997.997 0 0 1-.707-.293l-5-5a.999.999 0 0 1 0-1.414l5-5a.999.999 0 1 1 1.414 1.414L8.414 10l4.293 4.293A.999.999 0 0 1 12 16"
+                        fill-rule="evenodd"></path>
+                </svg>
+            </span>
+            <span class="text">Coupon list</span>
+        </a>
+    </nav>
+    <h3>
+        <span *ngIf="!coupon.code">New Coupon</span>
+        <span>{{coupon.code|uppercase}}</span>
+    </h3>
+    <div class="component">
+        <form [formGroup]="couponForm" (ngSubmit)="onSubmit()" class="form">
+            <fieldset>
+                <label for="">Coupon Code</label>
+                <input type="text" formControlName="code" class="uppercase">
+            </fieldset>
+            <fieldset>
+                <label for="">Discount Type</label>
+                <div class="radio">
+                    <input value="percent" formControlName="type" id="percent" type="radio">
+                    <label for="percent" class="radio-label">Percentage</label>
+                </div>
+                <div class="radio">
+                    <input value="fixed amount" formControlName="type" id="amount" type="radio">
+                    <label for="amount" class="radio-label">Fixed Amount</label>
+                </div>
+            </fieldset>
+            <fieldset>
+                <label for="">Discount Amount</label>
+                <input type="number" formControlName="amount">
+            </fieldset>
+            <fieldset>
+                <label for="">minimum Amount</label>
+                <input type="number" formControlName="minimumAmount">
+            </fieldset>
+            <fieldset>
+                <label for="">usage Limit</label>
+                <input type="number" formControlName="usageLimit">
+            </fieldset>
+            <fieldset>
+                <label for="">start date</label>
+                <input type="date" formControlName="startAt">
+            </fieldset>
+            <fieldset>
+                <label for="">expiry date</label>
+                <input type="date" formControlName="expiredAt">
+            </fieldset>
+            <fieldset>
+                <label for="">description</label>
+                <input type="text" formControlName="description">
+            </fieldset>
+            <fieldset>
+                <label for="">Usage Count</label>
+                <input type="number" formControlName="usageCount">
+            </fieldset>
+            <fieldset>
+                <label for="">Used by</label>
+                <input type="text" formControlName="usedBy">
+            </fieldset>
+            <div class="text-center" *ngIf="!coupon.code">
+                <br>
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+</section>

@@ -1,0 +1,35 @@
+<a class="menu" (click)="active=!active" [ngClass]="{'clicked': active}">
+    <svg id="the-svg" version="1.1" x="0px" y="0px" width="30px" height="29px" viewBox="0 0.5 30 29"
+        enable-background="new 0 0.5 30 29" xml:space="preserve">
+        <path id="the-burger" fill="none" stroke="#BADBAD" stroke-width="5" stroke-linecap="square"
+            stroke-linejoin="bevel" stroke-miterlimit="10" d="M0,6.117h30.5c2.484,0,4.5,2.015,4.5,4.5c0,2.484-2.016,4.5-4.5,4.5h-30c-2.485,0-4.5,2.016-4.5,4.5s2.015,4.5,4.5,4.5H30h9.5
+        l-25.833-9.469L39.5,5.883" />
+    </svg>
+</a>
+<nav role='navigation' class="clicked">
+    <ul class="main">
+        <li class="dashboard">
+            <a [routerLink]="['./dashboard']" routerLinkActive="active">
+                <fa-icon [icon]="['fa', 'anchor']"></fa-icon> <span>Dashboard</span>
+            </a>
+        </li>
+        <li><a [routerLink]="['./membership']" routerLinkActive="active">
+                <fa-icon [icon]="['fa', 'ad']"></fa-icon> <span>Membership</span>
+            </a></li>
+        <li><a [routerLink]="['./orders']" routerLinkActive="active">
+                <fa-icon [icon]="['fa', 'ad']"></fa-icon> <span>Orders</span>
+            </a></li>
+        <li><a [routerLink]="['./website']" routerLinkActive="active">
+                <fa-icon [icon]="['fa', 'edit']"></fa-icon> <span>Website</span>
+            </a></li>
+        <li><a [routerLink]="['./admin']" routerLinkActive="active">
+                <fa-icon [icon]="['fa', 'drafting-compass']"></fa-icon> <span>design</span>
+            </a></li>
+        <li><a [routerLink]="['./stock']" routerLinkActive="active">
+                <fa-icon [icon]="['fa', 'cube']"></fa-icon> <span>Stock</span>
+            </a></li>
+        <li><a [routerLink]="['./admin']" routerLinkActive="active">
+                <fa-icon [icon]="['fa', 'images']"></fa-icon> <span>Photographer</span>
+            </a></li>
+    </ul>
+</nav>

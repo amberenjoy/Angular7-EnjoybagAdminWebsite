@@ -1,0 +1,42 @@
+<!--
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-07-26 10:25:05
+ * @LastEditTime: 2019-08-28 10:01:37
+ * @LastEditors: Please set LastEditors
+ -->
+<section class="component">
+  <h3>Sign In</h3>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <fieldset>
+      <div class="forms_field">
+        <label for="email">Email *</label>
+        <input formControlName="email" type="text" [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+          autocomplete="on" />
+        <div *ngIf="submitted && f.email.errors" class="invalid_feedback">
+          <div *ngIf="f.email.errors.required">email is required</div>
+          <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+        </div>
+      </div>
+      <div class="forms_field">
+        <label for="password">Password ( Case-Sensitive ) *</label>
+        <input formControlName="password" type="password"
+          [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+        <div *ngIf="submitted && f.password.errors" class="invalid_feedback">
+          <div *ngIf="f.password.errors.required">Password is required</div>
+        </div>
+      </div>
+    </fieldset>
+    <div class="forms_buttons">
+      <button type="submit" [disabled]="loading" [ngClass]="{'disabled': f.email.errors||f.password.errors}">
+        <span> Sign in </span>
+        <div class="loading" *ngIf="loading">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+      </button>
+    </div>
+    <fieldset *ngIf="failed">
+      <span class="failed">Login failed! {{error}}</span>
+    </fieldset>
+  </form>
+</section>

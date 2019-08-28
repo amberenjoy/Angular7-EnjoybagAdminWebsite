@@ -1,0 +1,84 @@
+<!--
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-08-06 10:26:16
+ * @LastEditTime: 2019-08-27 14:45:25
+ * @LastEditors: Please set LastEditors
+ -->
+<section class="content" *ngIf="user">
+    <nav>
+        <a [routerLink]="[ '../' ]">
+            <span>
+                <svg viewBox="0 0 20 20" focusable="false" aria-hidden="true">
+                    <path
+                        d="M12 16a.997.997 0 0 1-.707-.293l-5-5a.999.999 0 0 1 0-1.414l5-5a.999.999 0 1 1 1.414 1.414L8.414 10l4.293 4.293A.999.999 0 0 1 12 16"
+                        fill-rule="evenodd"></path>
+                </svg>
+            </span>
+            <span class="text">Membership List</span>
+        </a>
+    </nav>
+    <h3>
+        <span>{{user.firstname}}, {{user.lastname}} </span>
+        <span>- Joined at {{user.createAt}}</span>
+    </h3>
+    <div class="grid">
+        <div class="component">
+            <div>
+                <h5>Customer Overview</h5>
+                <div class="form">
+                    <fieldset>
+                        <label for="">first name</label>
+                        <input type="text" value="{{user.firstname}}">
+                    </fieldset>
+                    <fieldset>
+                        <label for="">last name</label>
+                        <input type="text" value="{{user.lastname}}">
+                    </fieldset>
+                    <fieldset>
+                        <label for="">email</label>
+                        <input type="text" value="{{user.email}}">
+                    </fieldset>
+                    <fieldset>
+                        <label for="">Level</label>
+                        <input type="text" value="Basic">
+                    </fieldset>
+                    <fieldset>
+                        <label for="">areacode</label>
+                        <input type="text" value="{{user.areacode}}">
+                    </fieldset>
+                    <fieldset>
+                        <label for="">phone</label>
+                        <input type="text" value="{{user.phone}}">
+                    </fieldset>
+                    <fieldset>
+                        <label for="">birth month</label>
+                        <input type="text" value="{{user.birthmonth}}">
+                    </fieldset>
+                </div>
+            </div>
+            <div>
+                <h5>Address Book</h5>
+            </div>
+        </div>
+        <div class="component">
+            <div>
+                <h5>Cart List</h5>
+                <div class="item">
+                    <p> <span>{{user.cartlist}}</span> <span *ngIf="!user.cartlist">None</span></p>
+                </div>
+            </div>
+            <hr>
+            <div>
+                <h5>Order History</h5>
+                <div class="item">
+                    <p *ngFor="let order of user.orders">
+                        <a [routerLink]="[ '../../orders', order ]">{{order}}</a>
+                    </p>
+                    <p *ngIf="user.orders.length===0">None</p>
+                </div>
+            </div>
+            <hr>
+        </div>
+    </div>
+</section>

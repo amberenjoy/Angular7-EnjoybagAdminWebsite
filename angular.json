@@ -61,11 +61,17 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "enjoy-admin:build"
+            "browserTarget": "enjoy-admin:build",
+            "proxyConfig": "src/proxy.conf.json",
+            "port": 8000
           },
           "configurations": {
             "production": {
               "browserTarget": "enjoy-admin:build:production"
+            },
+            "test": {
+              "browserTarget": "enjoy-admin:build:test",
+              "proxyConfig": "src/proxy.conf.json"
             }
           }
         },
@@ -118,6 +124,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "enjoy-admin"
 }

@@ -1,0 +1,27 @@
+app-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 99;
+}
+
+app-sidemenu {
+    position: fixed;
+    width: 200px;
+    top: 75px;
+    bottom: 0px;
+    left: 0px;
+    background: #2a3542;
+    z-index: 100;
+}
+
+.body {
+    position: relative;
+    left: 0;
+    padding: 75px 0 1em 200px;
+    background: rgba(247, 237, 237, 0.24);
+    min-height: 90vh;
+
+
+}

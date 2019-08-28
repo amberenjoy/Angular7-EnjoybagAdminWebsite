@@ -1,0 +1,224 @@
+<!--
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-08-06 10:26:35
+ * @LastEditTime: 2019-08-26 17:00:39
+ * @LastEditors: Please set LastEditors
+ -->
+<section class="content" *ngIf="order">
+    <nav>
+        <a [routerLink]="[ '../' ]">
+            <span>
+                <svg viewBox="0 0 20 20" focusable="false" aria-hidden="true">
+                    <path
+                        d="M12 16a.997.997 0 0 1-.707-.293l-5-5a.999.999 0 0 1 0-1.414l5-5a.999.999 0 1 1 1.414 1.414L8.414 10l4.293 4.293A.999.999 0 0 1 12 16"
+                        fill-rule="evenodd"></path>
+                </svg>
+            </span>
+            <span class="text">Orders List</span>
+        </a>
+    </nav>
+    <h3>
+        <span>{{order.id}} </span>
+        <span class="sub">&nbsp;&nbsp;{{order.createAt}}&nbsp;&nbsp;</span>
+        <span class="status">{{order.status}}</span>
+        <span class="status blue">{{order.payment.paymentStatus}}</span>
+        <span class="status blue" *ngIf="order.delivery.deliveryStatus">{{order.delivery.deliveryStatus}}</span>
+        <div class="btn-area">
+            <button>Print Order</button>
+            <button *ngIf="order.status!=='Canceled'" (click)="cancelOrder=true">Cancel Order</button>
+        </div>
+    </h3>
+
+    <div class="grid">
+        <div class="component">
+            <div>
+                <h5>
+                    <span>{{order.status}}</span>
+                    &nbsp;
+                    <span class="sub">Updated at {{order.updateAt}}</span>
+                    <!-- <button *ngIf="order.status==='Order Placed'" (click)="updateOrder('status','Processing')">Mark as
+                        Processing</button>
+                    <button *ngIf="order.status==='Processing'" (click)="updateOrder('status','Completed')">Mark as
+                        Completed</button> -->
+                </h5>
+                <div class="item grid-item" *ngFor="let item of order.orderItems">
+                    <div>
+                        <img src="https://www.enjoybag.com.hk/photo/{{item.product.sku}}_1_s.jpg" alt="">
+                    </div>
+                    <div>
+                        <p>{{item.product.name}}</p>
+                        <p class="sub">
+                            {{item.product.color}} <br>
+                            {{item.product.sku}}
+                        </p>
+                    </div>
+                    <div class="text-center">
+                        <p class="sub" [ngClass]="{'del': item.product.off}">{{item.product.price| currency: 'HKD'}}
+                        </p>
+                        <p class="sub"> {{item.product.off }}</p>
+                        <p *ngIf="item.product.off">{{item.product.dis| currency: 'HKD'}}</p>
+                    </div>
+                    <div class="text-center">
+                        <p>Qty: {{item.qty}}</p>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div>
+                <h5>
+                    <span>{{order.payment.paymentStatus}} {{order.payment.paymentMethod}}</span>
+                    <button class="right action" (click)="sendEmail()" *ngIf="order.payment.paymentStatus!=='Paid'">
+                        Send Email Notification
+                        <span *ngIf="!sendEmailMark">
+                            <fa-icon [icon]="faQuestion"></fa-icon>
+                        </span>
+                        <span *ngIf="sendEmailMark">
+                            <fa-icon [icon]="faCheck"> </fa-icon>
+                        </span>
+                    </button>
+                    <button class="right" *ngIf="order.payment.paymentStatus!=='Paid'"
+                        (click)="updateOrder('payment.paymentStatus','Paid')">Mark as Paid</button>
+                    <!-- <button class="right" *ngIf="order.payment.paymentStatus==='Paid'"
+                        (click)="updateOrder('payment.paymentStatus','Unpaid')">Mark as Unpaid</button> -->
+                </h5>
+                <div class="item grid-info">
+                    <div>
+                        <p>Subtotal</p>
+                        <p>Shipping</p>
+                        <p>Bonus / Discount</p>
+                        <p><b>Total </b></p>
+                    </div>
+                    <div>
+                        <p>{{order.orderItems.length}} Item(s)</p>
+                        <p>{{order.delivery.deliveryMethod}}</p>
+                    </div>
+                    <div class="text-right">
+                        <p>{{order.subtotal| currency: 'HKD'}}</p>
+                        <p>{{order.shipping| currency: 'HKD'}}</p>
+                        <p>
+                            <span *ngIf="order.discount===0">- {{order.bonus| currency: 'HKD'}}</span>
+                            <span *ngIf="order.discount>0">{{order.discount}}% Off</span>
+                        </p>
+                        <p><b>{{order.total| currency: 'HKD'}}</b></p>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div>
+                <h5>
+                    <span>{{order.delivery.deliveryMethod}}</span>
+                    <span *ngIf="order.delivery.deliveryStatus">
+                        &nbsp; - &nbsp;&nbsp;{{order.delivery.deliveryStatus}}
+                    </span>
+                    <button class="right" *ngIf="order.payment.paymentStatus==='Paid'"
+                        (click)="addDeliveryInfo=true">Edit Information</button>
+                </h5>
+                <div class="item">
+                    <p *ngIf="order.delivery.dispatchedDate"> Delivery date: {{order.delivery.dispatchedDate}} </p>
+                    <p *ngIf="order.delivery.dispatchedNote"> Delivery Notes: {{order.delivery.dispatchedNote}} </p>
+                </div>
+            </div>
+            <hr>
+            <div>
+                <div class="tags-input">
+                    <ul *ngIf="order.notes">
+                        <li *ngFor="let note of order.notes"><span>{{note}}</span> <i (click)="deleteNote(note)"></i>
+                        </li>
+                    </ul>
+                    <input (keydown)="onKeydown($event)" type="text" placeholder="Press enter to add note">
+                </div>
+            </div>
+        </div>
+        <div class="component">
+            <div>
+                <h5>Customer</h5>
+                <div class="item">
+                    <p>{{order.billing.firstname}}, {{order.billing.lastname}}</p>
+                    <p>{{order.billing.email}}</p>
+                    <p>{{order.billing.areacode}}-{{order.billing.phone}}</p>
+                </div>
+            </div>
+            <hr>
+            <div>
+                <h5>Shipping Address</h5>
+                <div *ngIf="order.address.building" class="item">
+                    <p>{{order.address.building}},{{order.address.street}}</p>
+                    <p>{{order.address.district}},{{order.address.city}}</p>
+                </div>
+                <div *ngIf="!order.address.building" class="item">
+                    <p>No address from this order</p>
+                </div>
+            </div>
+            <hr>
+            <div>
+                <h5>Customer Notes</h5>
+                <div *ngIf="order.comment" class="item">
+                    <p>{{order.comment}}</p>
+                </div>
+                <div *ngIf="!order.comment" class="item">
+                    <p>No notes from customer</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="modal" *ngIf="addDeliveryInfo">
+    <div class="modal-bg"></div>
+    <div class="modal-body">
+        <div class="close" (click)="addDeliveryInfo=false"></div>
+        <form [formGroup]="deliveryForm">
+            <div class="field">
+                <label for="">Delivery Status:</label>
+                <div class="radio_area" *ngIf="order.delivery.deliveryMethod==='Self Pick-Up'">
+                    <div>
+                        <input value="Packed" id="Packed" formControlName="deliveryStatus" type="radio">
+                        <label for="Packed" class="radio-label">Packed</label>
+                    </div>
+                    <div>
+                        <input value="Picked Up" id="PickedUp" formControlName="deliveryStatus" type="radio">
+                        <label for="PickedUp" class="radio-label">Picked Up</label>
+                    </div>
+                    <br> <br>
+                </div>
+                <div class="radio_area" *ngIf="order.delivery.deliveryMethod==='Standard Delivery'">
+                    <div>
+                        <input value="Shipping" id="Shipping" formControlName="deliveryStatus" type="radio">
+                        <label for="Shipping" class="radio-label">Shipping</label>
+                    </div>
+                    <div>
+                        <input value="Shipped" id="Shipped" formControlName="deliveryStatus" type="radio">
+                        <label for="Shipped" class="radio-label">Shipped</label>
+                    </div>
+                </div>
+            </div>
+            <mat-form-field *ngIf="order.delivery.deliveryMethod==='Standard Delivery'">
+                <label for="">Express No*:</label>
+                <input matInput formControlName="dispatchedNote">
+            </mat-form-field>
+            <mat-form-field *ngIf="order.delivery.deliveryMethod==='Standard Delivery'">
+                <label for="">Express Date:</label>
+                <input type="date" matInput formControlName="dispatchedDate">
+            </mat-form-field>
+            <div class="text-center">
+                <button (click)="addDeliveryInfo=false">Cancel</button>
+                &nbsp;
+                <button class="crimson" (click)="addDeliveryDate()">Confirm</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal" *ngIf="cancelOrder">
+    <div class="modal-bg"></div>
+    <div class="modal-body">
+        <div class="close" (click)="cancelOrder=false"></div>
+
+        <div class="text-center">
+            <h3>Are you sure to cancel this order?</h3>
+            <button (click)="cancelOrder=false">Cancel</button>
+            &nbsp;
+            <button class="crimson" (click)="updateOrder('status','Canceled');cancelOrder=false">Confirm</button>
+        </div>
+    </div>
+</div>

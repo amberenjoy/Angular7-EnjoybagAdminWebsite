@@ -1,0 +1,51 @@
+<!--
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-07-26 10:25:05
+ * @LastEditTime: 2019-08-26 12:31:16
+ * @LastEditors: Please set LastEditors
+ -->
+<section>
+  <div class="body component">
+    <h3>Design Development
+      <p class="info">2019</p>
+    </h3>
+    <div *ngIf="sampleArray.length===0" class="loader-overlay">
+      <span class="loader">
+        <span class="loader-inner"></span>
+      </span>
+    </div>
+    <table class="report">
+      <tr class="report_header">
+        <th>Group</th>
+        <th>Staff</th>
+        <th>SR#</th>
+        <th>Class</th>
+        <th>Status</th>
+        <th>Date of Issue</th>
+        <th>Due</th>
+        <th>款數</th>
+        <th>版數</th>
+        <th>Cost</th>
+        <th>客號</th>
+        <th>Materials</th>
+      </tr>
+      <tr [ngClass]="{'enjoy': sample.label==='ENJOY', 'ej': sample.label==='EJ'}" *ngFor="let sample of sampleArray">
+        <td> <span>{{sample.label}}</span> </td>
+        <td> <span>{{sample.staff}}</span> </td>
+        <td> <span>{{sample.class}}</span> </td>
+        <td> <span>{{sample.status}}</span> </td>
+        <td> <span>{{sample.order}}</span></td>
+        <td> <span>{{sample.issueDate}}</span></td>
+        <td> <span>{{sample.dueDate}}</span> </td>
+        <td> <span>{{sample.sampleQty}}</span> </td>
+        <td> <span>{{sample.styleQty}}</span> </td>
+        <td> <span>{{sample.cost}}</span> </td>
+        <td><span class="text-center" *ngFor="let style of sample.styles">{{style}}</span></td>
+        <td class="text-left">
+          <span *ngFor="let material of sample.materials">{{material}}</span>
+        </td>
+      </tr>
+    </table>
+  </div>
+</section>

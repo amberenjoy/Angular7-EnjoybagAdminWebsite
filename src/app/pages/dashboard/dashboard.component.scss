@@ -1,0 +1,80 @@
+.top {
+    display: flex;
+    justify-content: space-evenly;
+
+    >div {
+        margin: 0 1em 1em 1em;
+        padding: 1em;
+
+        width: 25%;
+        text-align: center;
+        background: #fff;
+
+        h3 {
+            margin: 5px 0;
+
+            span {
+                color: crimson;
+                position: relative;
+                padding-right: 16px;
+
+                &::after {
+                    position: absolute;
+                    content: "";
+                    width: 6px;
+                    height: 6px;
+                    right: 3px;
+                    top: 3px;
+                    border: 2px solid crimson;
+                    border-bottom: none;
+                    border-right: none;
+                    transform: rotate(45deg);
+                }
+
+                &::before {
+                    position: absolute;
+                    content: "";
+                    width: 1px;
+                    height: 15px;
+                    right: 6px;
+                    top: 3px;
+                    border-right: 2px solid crimson;
+
+                }
+            }
+        }
+    }
+
+    .flex {
+        flex-wrap: nowrap;
+
+        div {
+            width: 50%;
+
+            &:first-child {
+                border-right: 1px solid #ddd;
+            }
+        }
+    }
+}
+
+.flex {
+    flex-wrap: wrap;
+}
+
+app-stock {
+    width: 25%;
+}
+
+app-task,
+app-sales-report {
+    width: 37.5%
+}
+
+.third {
+    margin: 1em 0;
+}
+
+app-design-development {
+    width: 100%;
+}
