@@ -2,21 +2,21 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-07-26 10:25:05
- * @LastEditTime: 2019-08-21 12:44:56
+ * @LastEditTime: 2019-09-19 11:01:43
  * @LastEditors: Please set LastEditors
  -->
 <div class="body component">
-  <h3>SKU Stock</h3>
-  <div class="stock">
-    <div>
-      <input #skuInput type="number">
-      <button (click)="checkStock()">Check</button>
+    <h3>SKU Stock</h3>
+    <div class="stock">
+        <div>
+            <input #skuInput type="number">
+            <button (click)="checkStock()">Check</button>
+        </div>
+        <div class="stock_detail">
+            <p>Stock: {{product.StockQty}}</p>
+            <p>香港: {{product.FtyStockQty}}</p>
+            <p>工廠: {{product.HKStockQty}}</p>
+            <p>Showroom: {{product.HKLOCATION}}</p>
+        </div>
     </div>
-    <div class="stock_detail">
-      <p>Stock: {{product.StockQty}}</p>
-      <p>香港: {{product.FtyStockQty}}</p>
-      <p>工廠: {{product.HKStockQty}}</p>
-      <p>Showroom: {{product.HKLOCATION}}</p>
-    </div>
-  </div>
 </div>

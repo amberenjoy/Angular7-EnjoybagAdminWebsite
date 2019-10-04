@@ -1,10 +1,17 @@
+/*
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-07-26 10:20:03
+ * @LastEditTime: 2019-08-29 11:24:57
+ * @LastEditors: Please set LastEditors
+ */
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
   production: false,
-  apiUrl: 'api'
+  apiUrl: '/api'
 };
 
 /*

@@ -1,13 +1,10 @@
 .body {
-    margin: 0 1em;
     background: #fff;
     padding: 1em;
-
-    h3 {
+    h2 {
         margin: 0;
         text-align: center;
         position: relative;
-
         p {
             position: absolute;
             right: 0;
@@ -31,33 +28,26 @@
     margin-top: 10px;
     text-align: center;
     width: 100%;
-
     th {
         font-size: 0.85em;
         color: #888;
         padding: 8px 3px;
     }
-
     tr {
         border-bottom: 1px solid #888;
-
     }
-
     td {
         padding: 5px 3px;
         min-width: 50px;
-
         &:last-child {
             max-width: 300px;
         }
     }
-
     span {
         line-height: 1.5;
         font-size: 12px;
         display: block;
     }
-
 }
 
 .enjoy {
@@ -65,9 +55,9 @@
 }
 
 .ej {
-    background: rgba(90, 123, 143, 0.04);
+    background: rgba(90, 123, 143, 0.02);
 }
 
 .loader-overlay {
-    height: 300px;
+    height: 75vh;
 }

@@ -3,6 +3,10 @@
     background: #333 !important;
 }
 
+.crimson {
+    color: crimson;
+}
+
 .header {
     margin-bottom: 1.5em;
     padding: 1em 2em 1.5em;
@@ -10,73 +14,78 @@
     border-radius: 0.5em;
     background: #fff;
     display: flex;
-
     mat-form-field {
         border-bottom: 1px solid #aaa;
         width: 100%;
         padding: 0.5em 0;
-
         .mat-input-element {
             width: unset;
             margin-left: 10px;
         }
     }
-
     button {
         width: 170px;
         font-size: 1em;
         background: #fff;
         border: none;
-        border: 1px solid crimson;
         cursor: pointer;
-        background: crimson;
+        background: #333;
         color: #fff;
+        border-right: 1px solid #fff;
+        &.active {
+            background: crimson;
+        }
+        &:last-child {
+            border-right: 1px solid transparent;
+        }
     }
 }
-
-
 
 table {
     background: #fff;
     padding: 2em;
     width: 100%;
-
     h3 {
         margin: 0;
         text-align: center;
     }
-
     th {
         text-transform: capitalize;
         text-align: center;
         background: #eee;
     }
-
     tr {
         cursor: pointer;
     }
-
     td {
         text-align: center;
         border-right: 1px solid #eee;
+        p {
+            justify-content: space-between;
+            margin: 0 10px;
+        }
+        span {
+            display: block;
+        }
     }
-
     td.mat-cell:first-of-type,
     td.mat-footer-cell:first-of-type,
     th.mat-header-cell:first-of-type {
         padding: 0;
         border-left: 1px solid #eee;
-
+    }
+    td.mat-cell:last-of-type,
+    td.mat-footer-cell:last-of-type,
+    th.mat-header-cell:last-of-type {
+        padding-right: 0;
     }
 }
 
 .close {
     display: inline-block;
-
     width: 2em;
     height: 2em;
     position: relative;
-
     &:before,
     &:after {
         position: absolute;
@@ -86,11 +95,9 @@ table {
         width: 2px;
         background-color: #333;
     }
-
     &:before {
         transform: rotate(45deg);
     }
-
     &:after {
         transform: rotate(-45deg);
     }
@@ -112,11 +119,59 @@ table {
     transform: translate(-50%);
     background: #fff;
     min-width: 700px;
-
     .close {
         position: absolute;
         right: 2em;
         cursor: pointer;
     }
+}
 
+.page {
+    margin: 0 1rem 1rem;
+    p {
+        float: left;
+        margin-top: 7px;
+    }
+    input {
+        width: 30px;
+        font-size: 1rem;
+        float: right;
+        margin-top: 5px;
+    }
+    ul {
+        list-style: none;
+        display: inline-block;
+        padding: 0;
+        li {
+            display: inline;
+            text-align: center;
+            cursor: pointer;
+        }
+        a {
+            float: left;
+            display: block;
+            font-size: 1rem;
+            text-decoration: none;
+            border: 1px solid transparent;
+            margin-left: 3px;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            border-radius: 100%;
+            &:hover {
+                background-color: crimson;
+                color: #fff;
+            }
+            &.active {
+                cursor: default;
+                background-color: crimson;
+                color: #fff;
+            }
+            &:active {
+                outline: none;
+                background-color: crimson;
+            }
+        }
+    }
 }

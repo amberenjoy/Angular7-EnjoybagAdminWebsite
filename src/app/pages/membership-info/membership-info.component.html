@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-08-06 10:26:16
- * @LastEditTime: 2019-08-27 14:45:25
+ * @LastEditTime: 2019-09-19 15:48:30
  * @LastEditors: Please set LastEditors
  -->
 <section class="content" *ngIf="user">
@@ -57,23 +57,32 @@
                     </fieldset>
                 </div>
             </div>
+            <hr>
             <div>
                 <h5>Address Book</h5>
+                <div class="item">
+                    <p> {{user.oldAddress}}</p>
+                    <p *ngFor="let address of user.address">
+                        {{address.building}}, {{address.street}}, {{address.district}}, {{address.city}}
+                    </p>
+                </div>
             </div>
+            <hr>
         </div>
         <div class="component">
             <div>
                 <h5>Cart List</h5>
                 <div class="item">
-                    <p> <span>{{user.cartlist}}</span> <span *ngIf="!user.cartlist">None</span></p>
+                    <p *ngIf="user.cartlist===''">None</p>
+                    <p *ngIf="user.cartlist!==''">{{user.cartlist}}</p>
                 </div>
             </div>
             <hr>
             <div>
                 <h5>Order History</h5>
                 <div class="item">
-                    <p *ngFor="let order of user.orders">
-                        <a [routerLink]="[ '../../orders', order ]">{{order}}</a>
+                    <p>
+                        <a *ngFor="let order of user.orders" [routerLink]="[ '../../orders', order.id ]">{{order.id}}</a>
                     </p>
                     <p *ngIf="user.orders.length===0">None</p>
                 </div>

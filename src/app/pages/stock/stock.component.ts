@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-07-26 10:25:05
- * @LastEditTime: 2019-08-21 12:44:23
+ * @LastEditTime: 2019-09-19 11:03:20
  * @LastEditors: Please set LastEditors
  */
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
@@ -36,6 +36,9 @@ export class StockComponent implements OnInit {
     this.stockService.getSKUStock(sku).subscribe(res => {
       console.log(res);
       this.product = res;
+      if (Object.keys(this.product.HKLOCATION).length === 0) {
+        this.product.HKLOCATION = '';
+      }
     });
   }
 }

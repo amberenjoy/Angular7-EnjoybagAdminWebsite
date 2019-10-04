@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-08-06 10:26:35
- * @LastEditTime: 2019-08-26 17:00:39
+ * @LastEditTime: 2019-09-19 15:58:04
  * @LastEditors: Please set LastEditors
  -->
 <section class="content" *ngIf="order">
@@ -34,8 +34,7 @@
         <div class="component">
             <div>
                 <h5>
-                    <span>{{order.status}}</span>
-                    &nbsp;
+                    <span>{{order.status}}</span> &nbsp;
                     <span class="sub">Updated at {{order.updateAt}}</span>
                     <!-- <button *ngIf="order.status==='Order Placed'" (click)="updateOrder('status','Processing')">Mark as
                         Processing</button>
@@ -49,8 +48,7 @@
                     <div>
                         <p>{{item.product.name}}</p>
                         <p class="sub">
-                            {{item.product.color}} <br>
-                            {{item.product.sku}}
+                            {{item.product.color}} <br> {{item.product.sku}}
                         </p>
                     </div>
                     <div class="text-center">
@@ -77,8 +75,7 @@
                             <fa-icon [icon]="faCheck"> </fa-icon>
                         </span>
                     </button>
-                    <button class="right" *ngIf="order.payment.paymentStatus!=='Paid'"
-                        (click)="updateOrder('payment.paymentStatus','Paid')">Mark as Paid</button>
+                    <button class="right" *ngIf="order.payment.paymentStatus!=='Paid'" (click)="updateOrder('payment.paymentStatus','Paid')">Mark as Paid</button>
                     <!-- <button class="right" *ngIf="order.payment.paymentStatus==='Paid'"
                         (click)="updateOrder('payment.paymentStatus','Unpaid')">Mark as Unpaid</button> -->
                 </h5>
@@ -111,15 +108,13 @@
                     <span *ngIf="order.delivery.deliveryStatus">
                         &nbsp; - &nbsp;&nbsp;{{order.delivery.deliveryStatus}}
                     </span>
-                    <button class="right" *ngIf="order.payment.paymentStatus==='Paid'"
-                        (click)="addDeliveryInfo=true">Edit Information</button>
+                    <button class="right" *ngIf="order.payment.paymentStatus==='Paid'" (click)="addDeliveryInfo=true">Edit Information</button>
                 </h5>
                 <div class="item">
                     <p *ngIf="order.delivery.dispatchedDate"> Delivery date: {{order.delivery.dispatchedDate}} </p>
                     <p *ngIf="order.delivery.dispatchedNote"> Delivery Notes: {{order.delivery.dispatchedNote}} </p>
                 </div>
             </div>
-            <hr>
             <div>
                 <div class="tags-input">
                     <ul *ngIf="order.notes">
@@ -160,6 +155,7 @@
                     <p>No notes from customer</p>
                 </div>
             </div>
+            <hr>
         </div>
     </div>
 </section>
@@ -202,8 +198,7 @@
                 <input type="date" matInput formControlName="dispatchedDate">
             </mat-form-field>
             <div class="text-center">
-                <button (click)="addDeliveryInfo=false">Cancel</button>
-                &nbsp;
+                <button (click)="addDeliveryInfo=false">Cancel</button> &nbsp;
                 <button class="crimson" (click)="addDeliveryDate()">Confirm</button>
             </div>
         </form>
@@ -216,8 +211,7 @@
 
         <div class="text-center">
             <h3>Are you sure to cancel this order?</h3>
-            <button (click)="cancelOrder=false">Cancel</button>
-            &nbsp;
+            <button (click)="cancelOrder=false">Cancel</button> &nbsp;
             <button class="crimson" (click)="updateOrder('status','Canceled');cancelOrder=false">Confirm</button>
         </div>
     </div>

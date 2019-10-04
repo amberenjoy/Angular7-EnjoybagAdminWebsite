@@ -38,6 +38,7 @@ import { OrderComponent } from './order/order.component';
 import { MembershipInfoComponent } from './membership-info/membership-info.component';
 import { OrderInfoComponent } from './order-info/order-info.component';
 import { CouponInfoComponent } from './coupon-info/coupon-info.component';
+import { PhotoComponent } from './photo/photo.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { CouponInfoComponent } from './coupon-info/coupon-info.component';
     OrderComponent,
     MembershipInfoComponent,
     OrderInfoComponent,
-    CouponInfoComponent
+    CouponInfoComponent,
+    PhotoComponent
   ],
   imports: [
     CommonModule,

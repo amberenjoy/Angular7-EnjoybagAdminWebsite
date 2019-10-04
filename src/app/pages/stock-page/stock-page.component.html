@@ -1,6 +1,6 @@
 <section class="content">
     <div class="table component">
-        <div class="conponent three women" [ngClass]="{'expand': data[0].loaded}">
+        <div class="component three " [ngClass]="{'expand': data[0].loaded}">
             <h3>Women</h3>
             <div *ngIf="!data[0].loaded" class="loader-overlay">
                 <span class="loader"><span class="loader-inner"></span></span>
@@ -11,22 +11,24 @@
                     <p><span>Collections:</span> <span>{{data[0].array.collection.length}}</span></p>
                     <p><span>Stock:</span> <span>{{calculateQty(0)}}</span></p>
                 </div>
-                <ul class="header flex">
-                    <li>Collection</li>
-                    <li>SKU</li>
-                    <li>Stock</li>
-                    <li>Create</li>
-                </ul>
-                <ul *ngFor="let collection of data[0].array.collection" class="flex">
-                    <li>{{collection.collectionname.slice(0, -11)}}</li>
-                    <li *ngIf="collection.product.length">{{collection.product.length}}</li>
-                    <li *ngIf="!collection.product.length">1</li>
-                    <li>{{calculateCollectionQty(collection.product)}}</li>
-                    <li>{{collection.createDate.split(' ')[0]}}</li>
-                </ul>
+                <table class="rwd-table">
+                    <tr>
+                        <th>Collection</th>
+                        <th>SKU</th>
+                        <th>Stock</th>
+                        <th>Create</th>
+                    </tr>
+                    <tr *ngFor="let collection of data[0].array.collection">
+                        <td class="text-center">{{collection.collectionname.slice(0, -11)}}</td>
+                        <td class="text-center" *ngIf="collection.product.length">{{collection.product.length}}</td>
+                        <td class="text-center" *ngIf="!collection.product.length">1</td>
+                        <td class="text-center"> {{calculateCollectionQty(collection.product)}}</td>
+                        <td class="text-center">{{collection.createDate.split(' ')[0]}}</td>
+                    </tr>
+                </table>
             </div>
         </div>
-        <div class="conponent three slg" [ngClass]="{'expand': data[1].loaded}">
+        <div class="component three " [ngClass]="{'expand': data[1].loaded}">
             <h3>SLG</h3>
             <div *ngIf="!data[1].loaded" class="loader-overlay">
                 <span class="loader"><span class="loader-inner"></span></span>
@@ -37,22 +39,24 @@
                     <p><span>Collections:</span> <span>{{data[1].array.collection.length}}</span></p>
                     <p><span>Stock:</span> <span>{{calculateQty(1)}}</span></p>
                 </div>
-                <ul class="header flex">
-                    <li>Collection</li>
-                    <li>SKU</li>
-                    <li>Stock</li>
-                    <li>Create</li>
-                </ul>
-                <ul *ngFor="let collection of data[1].array.collection" class="flex">
-                    <li>{{collection.collectionname.slice(0, -11)}}</li>
-                    <li *ngIf="collection.product.length">{{collection.product.length}}</li>
-                    <li *ngIf="!collection.product.length">1</li>
-                    <li>{{calculateCollectionQty(collection.product)}} </li>
-                    <li>{{collection.createDate.split(' ')[0]}}</li>
-                </ul>
+                <table class="rwd-table">
+                    <tr>
+                        <th>Collection</th>
+                        <th>SKU</th>
+                        <th>Stock</th>
+                        <th>Create</th>
+                    </tr>
+                    <tr *ngFor="let collection of data[1].array.collection">
+                        <td class="text-center">{{collection.collectionname.slice(0, -11)}}</td>
+                        <td class="text-center" *ngIf="collection.product.length">{{collection.product.length}}</td>
+                        <td class="text-center" *ngIf="!collection.product.length">1</td>
+                        <td class="text-center"> {{calculateCollectionQty(collection.product)}}</td>
+                        <td class="text-center">{{collection.createDate.split(' ')[0]}}</td>
+                    </tr>
+                </table>
             </div>
         </div>
-        <div class="conponent three men" [ngClass]="{'expand': data[2].loaded}">
+        <div class="component three " [ngClass]="{'expand': data[2].loaded}">
             <h3>Men</h3>
             <div *ngIf="!data[2].loaded" class="loader-overlay">
                 <span class="loader"><span class="loader-inner"></span></span>
@@ -63,25 +67,27 @@
                     <p><span>Collections:</span> <span>{{data[2].array.collection.length}}</span></p>
                     <p><span>Stock:</span> <span>{{calculateQty(2)}}</span></p>
                 </div>
-                <ul class="header flex">
-                    <li>Collection</li>
-                    <li>SKU</li>
-                    <li>Stock</li>
-                    <li>Create</li>
-                </ul>
-                <ul *ngFor="let collection of data[2].array.collection" class="flex">
-                    <li>{{collection.collectionname.slice(0, -11)}}</li>
-                    <li *ngIf="collection.product.length">{{collection.product.length}}</li>
-                    <li *ngIf="!collection.product.length">1</li>
-                    <li>{{calculateCollectionQty(collection.product)}} </li>
-                    <li>{{collection.createDate.split(' ')[0]}}</li>
-                </ul>
+                <table class="rwd-table">
+                    <tr>
+                        <th>Collection</th>
+                        <th>SKU</th>
+                        <th>Stock</th>
+                        <th>Create</th>
+                    </tr>
+                    <tr *ngFor="let collection of data[2].array.collection">
+                        <td class="text-center">{{collection.collectionname.slice(0, -11)}}</td>
+                        <td class="text-center" *ngIf="collection.product.length">{{collection.product.length}}</td>
+                        <td class="text-center" *ngIf="!collection.product.length">1</td>
+                        <td class="text-center"> {{calculateCollectionQty(collection.product)}}</td>
+                        <td class="text-center">{{collection.createDate.split(' ')[0]}}</td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
     <div class="table table-2">
-        <div class=" conponent four" (click)="openCategory('new')">
-            <h3>New</h3>
+        <div class="component four" (click)="openCategory('new')">
+            <h3>New </h3>
             <div *ngIf="data[3].loaded!==null&&!data[3].loaded" class="loader-overlay">
                 <span class="loader"><span class="loader-inner"></span></span>
             </div>
@@ -91,22 +97,24 @@
                     <p><span>Collections:</span> <span>{{data[3].array.collection.length}}</span></p>
                     <p><span>Stock:</span> <span>{{calculateQty(3)}}</span></p>
                 </div>
-                <ul class="header flex">
-                    <li>Collection</li>
-                    <li>SKU</li>
-                    <li>Stock</li>
-                    <li>Create</li>
-                </ul>
-                <ul *ngFor="let collection of data[3].array.collection" class="flex">
-                    <li>{{collection.collectionname.slice(0, -11)}}</li>
-                    <li *ngIf="collection.product.length">{{collection.product.length}}</li>
-                    <li *ngIf="!collection.product.length">1</li>
-                    <li>{{calculateCollectionQty(collection.product)}} </li>
-                    <li>{{collection.createDate.split(' ')[0]}}</li>
-                </ul>
+                <table class="rwd-table">
+                    <tr>
+                        <th>Collection</th>
+                        <th>SKU</th>
+                        <th>Stock</th>
+                        <th>Create</th>
+                    </tr>
+                    <tr *ngFor="let collection of data[3].array.collection">
+                        <td class="text-center">{{collection.collectionname.slice(0, -11)}}</td>
+                        <td class="text-center" *ngIf="collection.product.length">{{collection.product.length}}</td>
+                        <td class="text-center" *ngIf="!collection.product.length">1</td>
+                        <td class="text-center"> {{calculateCollectionQty(collection.product)}}</td>
+                        <td class="text-center">{{collection.createDate.split(' ')[0]}}</td>
+                    </tr>
+                </table>
             </div>
         </div>
-        <div class="conponent four" (click)="openCategory('discount')">
+        <div class="component four" (click)="openCategory('discount')">
             <h3>Sale</h3>
             <div *ngIf="data[4].loaded!==null&&!data[4].loaded" class="loader-overlay">
                 <span class="loader"><span class="loader-inner"></span></span>
@@ -117,22 +125,24 @@
                     <p><span>Collections:</span> <span>{{data[4].array.collection.length}}</span></p>
                     <p><span>Stock:</span> <span>{{calculateQty(4)}}</span></p>
                 </div>
-                <ul class="header flex">
-                    <li>Collection</li>
-                    <li>SKU</li>
-                    <li>Stock</li>
-                    <li>Create</li>
-                </ul>
-                <ul *ngFor="let collection of data[4].array.collection" class="flex">
-                    <li>{{collection.collectionname.slice(0, -11)}}</li>
-                    <li *ngIf="collection.product.length">{{collection.product.length}}</li>
-                    <li *ngIf="!collection.product.length">1</li>
-                    <li>{{calculateCollectionQty(collection.product)}} </li>
-                    <li>{{collection.createDate.split(' ')[0]}}</li>
-                </ul>
+                <table class="rwd-table">
+                    <tr>
+                        <th>Collection</th>
+                        <th>SKU</th>
+                        <th>Stock</th>
+                        <th>Create</th>
+                    </tr>
+                    <tr *ngFor="let collection of data[4].array.collection">
+                        <td class="text-center">{{collection.collectionname.slice(0, -11)}}</td>
+                        <td class="text-center" *ngIf="collection.product.length">{{collection.product.length}}</td>
+                        <td class="text-center" *ngIf="!collection.product.length">1</td>
+                        <td class="text-center"> {{calculateCollectionQty(collection.product)}}</td>
+                        <td class="text-center">{{collection.createDate.split(' ')[0]}}</td>
+                    </tr>
+                </table>
             </div>
         </div>
-        <div class="conponent four" (click)="openCategory('EJ')">
+        <div class="component four" (click)="openCategory('EJ')">
             <h3>EJ</h3>
             <div *ngIf="data[5].loaded!==null&&!data[5].loaded" class="loader-overlay">
                 <span class="loader"><span class="loader-inner"></span></span>
@@ -143,22 +153,24 @@
                     <p><span>Collections:</span> <span>{{data[5].array.collection.length}}</span></p>
                     <p><span>Stock:</span> <span>{{calculateQty(5)}}</span></p>
                 </div>
-                <ul class="header flex">
-                    <li>Collection</li>
-                    <li>SKU</li>
-                    <li>Stock</li>
-                    <li>Create</li>
-                </ul>
-                <ul *ngFor="let collection of data[5].array.collection" class="flex">
-                    <li>{{collection.collectionname.slice(0, -11)}}</li>
-                    <li *ngIf="collection.product.length">{{collection.product.length}}</li>
-                    <li *ngIf="!collection.product.length">1</li>
-                    <li>{{calculateCollectionQty(collection.product)}} </li>
-                    <li>{{collection.createDate.split(' ')[0]}}</li>
-                </ul>
+                <table class="rwd-table">
+                    <tr>
+                        <th>Collection</th>
+                        <th>SKU</th>
+                        <th>Stock</th>
+                        <th>Create</th>
+                    </tr>
+                    <tr *ngFor="let collection of data[5].array.collection">
+                        <td class="text-center">{{collection.collectionname.slice(0, -11)}}</td>
+                        <td class="text-center" *ngIf="collection.product.length">{{collection.product.length}}</td>
+                        <td class="text-center" *ngIf="!collection.product.length">1</td>
+                        <td class="text-center"> {{calculateCollectionQty(collection.product)}}</td>
+                        <td class="text-center">{{collection.createDate.split(' ')[0]}}</td>
+                    </tr>
+                </table>
             </div>
         </div>
-        <div class="four" (click)="openCategory('ZHU')">
+        <div class="component four" (click)="openCategory('ZHU')">
             <h3>ZHU</h3>
             <div *ngIf="data[6].loaded!==null&&!data[6].loaded" class="loader-overlay">
                 <span class="loader"><span class="loader-inner"></span></span>
@@ -169,19 +181,21 @@
                     <p><span>Collections:</span> <span>{{data[6].array.collection.length}}</span></p>
                     <p><span>Stock:</span> <span>{{calculateQty(6)}}</span></p>
                 </div>
-                <ul class="header flex">
-                    <li>Collection</li>
-                    <li>SKU</li>
-                    <li>Stock</li>
-                    <li>Create</li>
-                </ul>
-                <ul *ngFor="let collection of data[6].array.collection" class="flex">
-                    <li>{{collection.collectionname.slice(0, -11)}}</li>
-                    <li *ngIf="collection.product.length">{{collection.product.length}}</li>
-                    <li *ngIf="!collection.product.length">1</li>
-                    <li>{{calculateCollectionQty(collection.product)}} </li>
-                    <li>{{collection.createDate.split(' ')[0]}}</li>
-                </ul>
+                <table class="rwd-table">
+                    <tr>
+                        <th>Collection</th>
+                        <th>SKU</th>
+                        <th>Stock</th>
+                        <th>Create</th>
+                    </tr>
+                    <tr *ngFor="let collection of data[6].array.collection">
+                        <td class="text-center">{{collection.collectionname.slice(0, -11)}}</td>
+                        <td class="text-center" *ngIf="collection.product.length">{{collection.product.length}}</td>
+                        <td class="text-center" *ngIf="!collection.product.length">1</td>
+                        <td class="text-center"> {{calculateCollectionQty(collection.product)}}</td>
+                        <td class="text-center">{{collection.createDate.split(' ')[0]}}</td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>

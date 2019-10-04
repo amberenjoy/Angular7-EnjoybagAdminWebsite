@@ -1,15 +1,24 @@
+/*
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-07-30 10:05:45
+ * @LastEditTime: 2019-09-19 11:21:09
+ * @LastEditors: Please set LastEditors
+ */
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { NgxXml2jsonService } from 'ngx-xml2json';
 import { throwError } from 'rxjs';
 import { catchError, map, retry } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { environment } from './../../environments/environment';
 
 const headers = new HttpHeaders({ 'Content-Type': 'text/xml' }).set('Accept', 'text/xml');
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class StockService {
 
   private bagWomenListSubject = new BehaviorSubject<any>([]);
@@ -27,36 +36,38 @@ export class StockService {
   getSLGList(): Observable<any> {
     return this.bagSLGListSubject.asObservable();
   }
+  // share with client api
   getBaglist(key) {
-    const bagNew = 'https://www.enjoybag.com.hk/wcapps/enjoywebsite.nsf/xmlv.xsp?key=' + key + '&lang=EN&cur=HKD';
-    return this.http.get(bagNew, { headers, responseType: 'text' }).pipe(map(res => {
-      console.log('get data from server');
-      const parser = new DOMParser();
-      const xml = parser.parseFromString(res, 'text/xml');
-      const obj = this.ngxXml2jsonService.xmlToJson(xml);
-      if (key === 'women') {
-        this.bagWomenListSubject.next(obj['product'.toString()]);
-      } else if (key === 'men') {
-        this.bagMenListSubject.next(obj['product'.toString()]);
-      } else if (key === 'slg') {
-        this.bagSLGListSubject.next(obj['product'.toString()]);
+    return this.http.get(`${environment.apiUrl}/products/lines/${key}`, {
+      headers, responseType: 'text',
+      params: {
+        lan: 'EN',
+        cur: 'HKD'
       }
-      return obj['product'.toString()];
-    }), retry(2), catchError(this.handleError));
+    }).pipe(
+      map(res => {
+        const parser = new DOMParser();
+        const xml = parser.parseFromString(res, 'text/xml');
+        const obj = this.ngxXml2jsonService.xmlToJson(xml);
+        if (key === 'women') {
+          this.bagWomenListSubject.next(obj['product'.toString()]);
+        } else if (key === 'men') {
+          this.bagMenListSubject.next(obj['product'.toString()]);
+        } else if (key === 'slg') {
+          this.bagSLGListSubject.next(obj['product'.toString()]);
+        }
+        return obj['product'.toString()];
+      }), retry(2), catchError(this.handleError));
   }
+  // share with client api
   getBagType(name) {
-    const bagType = 'https://www.enjoybag.com.hk/wcapps/enjoywebsite.nsf/xmlv.xsp?type=' + name + '&lang=EN&cur=HKD';
-    return this.http.get(bagType, { headers, responseType: 'text' }).pipe(map(res => {
-      console.log('get data from server');
-      const parser = new DOMParser();
-      const xml = parser.parseFromString(res, 'text/xml');
-      const obj = this.ngxXml2jsonService.xmlToJson(xml);
-      return obj['product'.toString()];
-    }), retry(2), catchError(this.handleError));
-  }
-  getQuerylist(qry) {
-    const bagSearch = 'https://www.enjoybag.com.hk/wcapps/enjoywebsite.nsf/xmlv.xsp?search=' + qry + '&color=&stype=&lang=EN&cur=HKD';
-    return this.http.get(bagSearch, { headers, responseType: 'text' }).pipe(
+    return this.http.get(`${environment.apiUrl}/products/types/${name}`, {
+      headers, responseType: 'text',
+      params: {
+        lan: 'EN',
+        cur: 'HKD'
+      }
+    }).pipe(
       map(res => {
         const parser = new DOMParser();
         const xml = parser.parseFromString(res, 'text/xml');
@@ -64,20 +75,9 @@ export class StockService {
         return obj['product'.toString()];
       }), retry(2), catchError(this.handleError));
   }
-  getBag(sku) {
-    const bagDetail = 'https://www.enjoybag.com.hk/wcapps/enjoywebsite.nsf/xml.xsp?sku=' + sku + '&lang=EN&cur=HKD';
-    return this.http.get(bagDetail, { headers, responseType: 'text' }).pipe(
-      map(res => {
-        const parser = new DOMParser();
-        const xml = parser.parseFromString(res, 'text/xml');
-        const obj = this.ngxXml2jsonService.xmlToJson(xml);
-        return obj['product'.toString()];
-      }), retry(2), catchError(this.handleError));
-  }
-
+  // only for business admin
   getSKUStock(sku) {
-    const bagDetail = 'https://www.enjoybag.com.hk/wcapps/enjoywebsite.nsf/xmls.xsp?sku=' + sku + '&lang=EN&cur=HKD';
-    return this.http.get(bagDetail, { headers, responseType: 'text' }).pipe(
+    return this.http.get(`${environment.apiUrl}/stock/${sku}`, { headers, responseType: 'text' }).pipe(
       map(res => {
         const parser = new DOMParser();
         const xml = parser.parseFromString(res, 'text/xml');

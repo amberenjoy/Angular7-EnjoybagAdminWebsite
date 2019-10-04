@@ -1,10 +1,10 @@
 /*
- * @Description: In User Settings Edit
- * @Author: your name
- * @Date: 2019-07-26 10:25:05
- * @LastEditTime: 2019-08-19 15:16:50
+* @Description: In User Settings Edit
+* @Author: your name
+* @Date: 2019-07-26 10:25:05
+ * @LastEditTime: 2019-09-19 11:39:58
  * @LastEditors: Please set LastEditors
- */
+*/
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { IndexComponent } from './index/index.component';
@@ -17,6 +17,8 @@ import { OrderComponent } from './order/order.component';
 import { MembershipInfoComponent } from './membership-info/membership-info.component';
 import { OrderInfoComponent } from './order-info/order-info.component';
 import { CouponInfoComponent } from './coupon-info/coupon-info.component';
+import { DesignDevelopmentComponent } from './design-development/design-development.component';
+import { PhotoComponent } from './photo/photo.component';
 
 const routes: Routes = [
   {
@@ -40,6 +42,12 @@ const routes: Routes = [
       },
       {
         path: 'stock', component: StockPageComponent,
+      },
+      {
+        path: 'design', component: DesignDevelopmentComponent,
+      },
+      {
+        path: 'photo', component: PhotoComponent,
       },
       {
         path: 'membership', children: [
