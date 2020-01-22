@@ -1,3 +1,11 @@
+<!--
+ * @Author: your name
+ * @Date: 2019-07-26 10:25:05
+ * @LastEditTime: 2019-11-04 14:32:24
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: \Angular\enjoybagAdmin\src\app\pages\sidemenu\sidemenu.component.html
+ -->
 <a class="menu" (click)="active=!active" [ngClass]="{'clicked': active}">
     <svg id="the-svg" version="1.1" x="0px" y="0px" width="30px" height="29px" viewBox="0 0.5 30 29" enable-background="new 0 0.5 30 29" xml:space="preserve">
         <path id="the-burger" fill="none" stroke="#BADBAD" stroke-width="5" stroke-linecap="square"
@@ -5,7 +13,7 @@
         l-25.833-9.469L39.5,5.883" />
     </svg>
 </a>
-<nav role='navigation' class="clicked">
+<nav role="navigation" class="clicked">
     <ul class="main">
         <li class="dashboard">
             <a [routerLink]="['./dashboard']" routerLinkActive="active">
@@ -34,7 +42,7 @@
         </li>
         <li>
             <a [routerLink]="['./stock']" routerLinkActive="active">
-                <fa-icon [icon]="['fa', 'cube']"></fa-icon> <span>Stock</span>
+                <fa-icon [icon]="['fa', 'cube']"></fa-icon> <span>Web Stock</span>
             </a>
         </li>
         <li>

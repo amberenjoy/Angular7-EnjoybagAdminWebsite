@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-07-26 10:25:05
- * @LastEditTime: 2019-10-04 10:31:09
+ * @LastEditTime: 2019-11-04 10:25:23
  * @LastEditors: Please set LastEditors
  */
 import { Component, OnInit } from '@angular/core';
@@ -16,12 +16,14 @@ import { OrderService } from './../../_services/order.service';
 })
 export class DashboardComponent implements OnInit {
 
-  memberQty: number;
-  memberTodayQty = 0;
-  ordersQty: number;
-  ordersTodayQty = 0;
-  today: string;
-
+  membersQty={
+    todayCount: 0,
+    totalCount : 0 
+  };
+  ordersQty={
+    todayCount: 0,
+    totalCount : 0 
+  };
   constructor(
     private membershipService: MembershipService,
     private orderService: OrderService
@@ -34,15 +36,14 @@ export class DashboardComponent implements OnInit {
 
   getMembershipQty() {
     this.membershipService.getUsersQTY().subscribe(res => {
-      this.memberQty = res.totalCount;
-      this.memberTodayQty = res.todayCount;
+      this.membersQty=res;
     });
   }
 
   getOrdersQty() {
     this.orderService.getOrdersQty().subscribe(res => {
-      this.ordersQty = res.totalCount;
-      this.ordersTodayQty = res.todayCount;
+      this.ordersQty=res;
+
     });
   }
 }

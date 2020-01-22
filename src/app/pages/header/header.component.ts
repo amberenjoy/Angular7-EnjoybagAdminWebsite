@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-07-26 10:25:05
- * @LastEditTime: 2019-08-14 10:41:07
+ * @LastEditTime: 2019-10-30 14:22:46
  * @LastEditors: Please set LastEditors
  */
 import { Component, OnInit } from '@angular/core';
@@ -15,15 +15,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
   username: string;
   constructor(
     private authenticationService: AuthenticationService,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit() {
-    this.authenticationService.currentUser.subscribe(user => {
+    this.authenticationService.currentUserValue().subscribe(user => {
       this.username = user.username;
     });
   }

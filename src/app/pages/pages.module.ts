@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-07-26 10:25:05
- * @LastEditTime: 2019-08-14 15:57:58
+ * @LastEditTime: 2019-10-29 15:42:29
  * @LastEditors: Please set LastEditors
  */
 import { NgModule } from '@angular/core';
@@ -11,13 +11,17 @@ import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { MembershipService } from '../_services/membership.service';
-import { StockService } from '../_services/stock.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from '../_helpers/jwt.interceptor';
 import { ErrorInterceptor } from '../_helpers/error.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatTableModule, MatSortModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
+import {
+  MatTableModule,
+  MatSortModule,
+  MatFormFieldModule,
+  MatDatepickerModule,
+  MatNativeDateModule
+} from '@angular/material';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 
@@ -69,16 +73,15 @@ import { PhotoComponent } from './photo/photo.component';
     MatTableModule,
     MatSortModule,
     MatInputModule,
+    MatFormFieldModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatRadioModule
   ],
   providers: [
-    MembershipService,
-    StockService,
     // fakeBackendProvider,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ]
 })
-export class PagesModule { }
+export class PagesModule {}

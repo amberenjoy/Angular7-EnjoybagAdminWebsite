@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-08-05 10:49:42
- * @LastEditTime: 2019-10-04 12:56:38
+ * @LastEditTime: 2019-11-04 11:53:38
  * @LastEditors: Please set LastEditors
  -->
 <section class="content">
@@ -57,9 +57,9 @@
             <th mat-header-cell *matHeaderCellDef>Orders</th>
             <td mat-cell *matCellDef="let user">{{user.orders.length}} </td>
         </ng-container>
-        <ng-container matColumnDef="createdAt">
-            <th mat-header-cell *matHeaderCellDef>createdAt </th>
-            <td mat-cell *matCellDef="let user"> {{user.createAt}} </td>
+        <ng-container matColumnDef="createAt">
+            <th mat-header-cell *matHeaderCellDef>createAt </th>
+            <td mat-cell *matCellDef="let user"> {{user.createAt | date: "yyyy-MM-dd hh:mm" }} </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openUserInfo(row._id)"></tr>

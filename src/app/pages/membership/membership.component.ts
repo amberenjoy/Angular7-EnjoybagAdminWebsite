@@ -1,10 +1,10 @@
 /*
-* @Description: In User Settings Edit
-* @Author: your name
-* @Date: 2019-08-05 10:49:42
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-08-05 10:49:42
  * @LastEditTime: 2019-10-04 12:59:30
  * @LastEditors: Please set LastEditors
-*/
+ */
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { MembershipService } from './../../_services/membership.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -15,10 +15,16 @@ import { User } from './../../shared/models/user';
   templateUrl: './membership.component.html',
   styleUrls: ['./membership.component.scss']
 })
-
 export class MembershipComponent implements OnInit {
-
-  displayedColumns: string[] = ['username', 'email', 'areaCode', 'phone', 'level', 'orders', 'createdAt'];
+  displayedColumns: string[] = [
+    'username',
+    'email',
+    'areaCode',
+    'phone',
+    'level',
+    'orders',
+    'createAt'
+  ];
   dataSource: User[] = [];
   defaultSource: User[] = [];
   uploadModal: boolean;
@@ -33,7 +39,7 @@ export class MembershipComponent implements OnInit {
     private membershipService: MembershipService,
     private router: Router,
     private route: ActivatedRoute
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.membershipService.getUsersQTY().subscribe(res => {
@@ -70,7 +76,11 @@ export class MembershipComponent implements OnInit {
   onKeyPressPage(event) {
     if (event.charCode === 13) {
       const queryPage = event.target.value.toLowerCase();
-      if (queryPage !== '' && queryPage <= (this.membersTotalCount / 50) - ((this.membersTotalCount % 50) / 50) + 1) {
+      if (
+        queryPage !== '' &&
+        queryPage <=
+          this.membersTotalCount / 50 - (this.membersTotalCount % 50) / 50 + 1
+      ) {
         this.page = queryPage;
         this.loadUsersByPage(queryPage);
       } else {
@@ -87,15 +97,12 @@ export class MembershipComponent implements OnInit {
 
   uploadData(data) {
     this.loadingData = true;
-    this.membershipService.uploadData(data).subscribe(
-      res => {
-        console.log(res);
-        if (res.message) {
-          this.loadingData = false;
-          this.uploadModal = false;
-        }
+    this.membershipService.uploadData(data).subscribe(res => {
+      console.log(res);
+      if (res.message) {
+        this.loadingData = false;
+        this.uploadModal = false;
       }
-    );
+    });
   }
-
 }

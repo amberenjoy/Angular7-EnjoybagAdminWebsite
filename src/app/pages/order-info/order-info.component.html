@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-08-06 10:26:35
- * @LastEditTime: 2019-09-19 15:58:04
+ * @LastEditTime: 2019-11-04 11:49:47
  * @LastEditors: Please set LastEditors
  -->
 <section class="content" *ngIf="order">
@@ -211,7 +211,7 @@
 
         <div class="text-center">
             <h3>Are you sure to cancel this order?</h3>
-            <button (click)="cancelOrder=false">Cancel</button> &nbsp;
+            <button (click)="cancelOrder=false">No</button> &nbsp;
             <button class="crimson" (click)="updateOrder('status','Canceled');cancelOrder=false">Confirm</button>
         </div>
     </div>
